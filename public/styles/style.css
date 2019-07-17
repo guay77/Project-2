@@ -1,10 +1,14 @@
 html {
-    background-image: url('../../assets/photos/back.jpg');
     text-align: center;
+    background-color: lavender;
 }
 
-h1 {
-    margin: 10px;
+.main {
+    margin: 20px;
+}
+
+header {
+    background-color: lavender;
 }
 
 .split {
@@ -18,12 +22,12 @@ h1 {
 }
 
 .split.left {
-    margin-top: 50px;
+    margin-top: 120px;
     background-image: url('../../assets/photos/back.jpg');
 }
 
 .split.right {
-    margin-top: 50px;
+    margin-top: 120px;
     background-image: url('../../assets/photos/back.jpg');
 }
 

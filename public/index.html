@@ -1,35 +1,44 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <title>Wardrope</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="./styles/style.css">
 </head>
 
 <body>
     <header>
-        <h1>Rent or Add</h1>
-
+        <div class="main">
+            <h1>Large Grid</h1>
+            <p>The following example will result in a 25%/75% split on small devices, a 50%/50% split on medium devices, and a 33%/66% split on large devices. On extra small devices, it will automatically stack (100%).</p>
+            <p>Resize the browser window to see the effect.</p>
     </header>
-    <div class="split left">
+
+    <div class="split left" id="left" display="none">
         <div class="centered">
             <img src="../assets/photos/diger.jpg" alt="rentalclothes" style="width:100%">
             <h2><button id="start" style="color:orange" class="rentbutton btn-danger">RENT</button></h2>
         </div>
     </div>
 
-    <div class="split right">
+    <div class="split right" id="right" display="none">
         <div class="centered">
             <img src="../assets/photos/other.jpg" alt="addingclothes" style="width:90%">
             <h2><button id="start" style="color:orange" class="addbutton btn-danger">ADD</button></h2>
-
         </div>
     </div>
 
     <footer>
-
-
+        <div class="footer">
+            <span class="text-muted">Place sticky footer content here.</span>
+        </div>
     </footer>
+
 </body>
 
 </html>
