@@ -1,33 +1,181 @@
-<div id="home">
-  <div class="container">
-    <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
-          </div>
-          <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
-      </div>
-    </div>
+<h1>New Posts</h1>
+
+<ul>
+  {{#each post}}
+  <li>
+    <p>
+      {{this.id}}. {{this.post}}
+
+      <button data-postid="{{this.id}}" class="delpost">Delete Plan!</button>
+    </p>
+  </li>
+  {{/each}}
+</ul>
+
+<h2>Create a Post</h2>
+<div class="container"></div>
+<div class="col-4"></div>
+<form>
+  
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Size</label>
+    <select class="AllSizes" id="Size">
+      <option>XS</option>
+      <option>S</option>
+      <option>M</option>
+      <option>L</option>
+      <option>XL</option>
+      <option>XXL</option>
+    </select>
   </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Event</label>
+    <select class="AllEvents" id="Event">
+      <option>Casual</option>
+      <option>Formal</option>
+      <option>Sport</option>
+      <option>Bussiness Casual</option>
+      <option>Black Tie</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Size</label>
+    <select class="AllSizes" id="Size">
+      <option>XS</option>
+      <option>S</option>
+      <option>M</option>
+      <option>L</option>
+      <option>XL</option>
+      <option>XXL</option>
+    </select>
+  </div>
+
+  
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Enter Your Item Description</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+<button type="submit">Create Post!</button>
+</form>
+
+<h2>Update a Post</h2>
+<form id="updatepost" class="button-size">
+  <select name="id">
+		{{#each plans}}
+			<option value="{{this.id}}">{{this.plan}}</option>
+		{{/each}}
+	</select>
+    <form>
+  
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Size</label>
+    <select class="AllSizes" id="Size">
+      <option>XS</option>
+      <option>S</option>
+      <option>M</option>
+      <option>L</option>
+      <option>XL</option>
+      <option>XXL</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Event</label>
+    <select class="AllEvents" id="Event">
+      <option>Casual</option>
+      <option>Formal</option>
+      <option>Sport</option>
+      <option>Bussiness Casual</option>
+      <option>Black Tie</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Size</label>
+    <select class="AllSizes" id="Size">
+      <option>XS</option>
+      <option>S</option>
+      <option>M</option>
+      <option>L</option>
+      <option>XL</option>
+      <option>XXL</option>
+    </select>
+  </div>
+
+  
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Enter Your Item Description</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+  
+  <button type="submit">Update Plan!</button>
+</form>
+</div>
+<div class="col-8">
+
+</div>
 </div>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+
+<script type="text/javascript">
+  $(".delpost").on("click", function(event) {
+    // Get the ID from the button.
+    // This is shorthand for $(this).attr("data-planid")
+    var id = $(this).data("postid");
+
+    // Send the DELETE request.
+    $.ajax("/api/posts/" + id, {
+      type: "DELETE"
+    }).then(
+      function() {
+        console.log("deleted id ", id);
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
+
+  $("#createpost").on("submit", function(event) {
+    // Make sure to preventDefault on a submit event.
+    event.preventDefault();
+
+    // [name=plan] will find an element with a "name" attribute equal to the string "plan"
+    var newPlan = {
+      plan: $("#createpost[name=post]").val().trim()
+    };
+
+    // Send the POST request.
+    $.ajax("/api/posts", {
+      type: "POST",
+      data: newPlan
+    }).then(
+      function() {
+        console.log("created new plan");
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
+
+  $("#update").on("submit", function(event) {
+    // Make sure to preventDefault on a submit event.
+    event.preventDefault();
+
+    // Get the ID by finding an element with a "name" attribute equal to the string "id"
+    var id = $("[name=id]").val().trim();
+
+    var updatedPlan = {
+      plan: $("#updatepost [name=post]").val().trim()
+    };
+
+    // Send the PUT request.
+    $.ajax("/api/posts/" + id, {
+      type: "PUT",
+      data: updatedPost
+    }).then(
+      function() {
+        console.log("updated id ", id);
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
+</script>
