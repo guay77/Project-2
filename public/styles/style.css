@@ -1,5 +1,5 @@
 html {
-    background: white;
+    background-image: url('../../assets/photos/back.jpg');
     text-align: center;
 }
 
@@ -19,10 +19,12 @@ h1 {
 
 .split.left {
     margin-top: 50px;
+    background-image: url('../../assets/photos/back.jpg');
 }
 
 .split.right {
     margin-top: 50px;
+    background-image: url('../../assets/photos/back.jpg');
 }
 
 
