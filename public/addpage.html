@@ -7,8 +7,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <head>
@@ -21,7 +19,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#" data-page="home">Home <span class="sr-only">(current)</span></a>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Wedding
@@ -34,7 +32,7 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" data-page="casual" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Casual
               </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -45,7 +43,7 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" data-page="blacktie" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Black Tie
               </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -64,10 +62,11 @@
     </nav>
 </head>
 
-<body>
+<body background="../assets/photos/formbackground.jpg">
+    <br>
     <div class="container px-lg-5">
         <div class="row mx-lg-n5">
-            <div class="col py-3 px-lg-5 border bg-light">
+            <div class="col py-3 px-lg-5 border bg-light" id=form style="margin:30px">
                 <h2>Create a Post</h2>
                 <div class="container"></div>
                 <div class="col-4"></div>
@@ -98,27 +97,11 @@
                         <label for="exampleFormControlTextarea1">Enter Your Item Description</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
-                    <p>Upload Image</p>
-                    <form action="/upload" method="post" enctype="multipart/form-data">
-                        <input type="file" accept="image/*" name="photo">
-                        <input type="submit" value="upload">
-                        <br>
-                        <br>
-                        <button type="submit">Create Post!</button>
-                    </form>
-            </div>
-            <div class="col py-3 px-lg-5 border bg-light">
-                <form>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputEmail4">Email</label>
-                            <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputPassword4">Password</label>
-                            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-                        </div>
+                    <div class="form-group">
+                        <label for="inputEmail4">Email</label>
+                        <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
                     </div>
+
                     <div class="form-group">
                         <label for="inputAddress">Address</label>
                         <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
@@ -144,21 +127,19 @@
                             <input type="text" class="form-control" id="inputZip">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="gridCheck">
-                            <label class="form-check-label" for="gridCheck">
-                                  Check me out
-                                </label>
-                        </div>
+                    <p>Upload Image</p>
+                    <form action="/upload" method="post" enctype="multipart/form-data">
+                        <input type="file" accept="image/*" name="photo">
+                        <input type="submit" value="upload">
+                        <div>
+                            <br>
+                            <br>
+                            <button type="submit" class="btn btn-primary">CREATE POST</button>
+                    </form>
                     </div>
-                    <button type="submit" class="btn btn-primary">Sign in</button>
-                </form>
             </div>
         </div>
-    </div>
-
-
+        <br>
 </body>
 
 </html>
