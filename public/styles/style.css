@@ -1,15 +1,10 @@
-html {
-    text-align: center;
-    background-color: lavender;
+body {
+    background-image: url('../../assets/photos/back.jpg');
+    box-sizing: border-box
 }
 
-.main {
-    margin: 20px;
-}
 
-header {
-    background-color: lavender;
-}
+/* Split the screen in half */
 
 .split {
     height: 100%;
@@ -21,30 +16,15 @@ header {
     padding-top: 20px;
 }
 
-.split.left {
-    margin-top: 120px;
-    background-image: url('../../assets/photos/back.jpg');
-}
-
-.split.right {
-    margin-top: 120px;
-    background-image: url('../../assets/photos/back.jpg');
-}
-
 
 /* Control the left side */
 
 .left {
     left: 0;
-    background: white;
 }
-
-
-/* Control the right side */
 
 .right {
     right: 0;
-    background: white;
 }
 
 
@@ -62,7 +42,7 @@ header {
 /* Style the image inside the centered container, if needed */
 
 .centered img {
-    width: 200px;
+    width: 150px;
     border-radius: 50%;
     margin-left: -60px;
 }
@@ -77,9 +57,13 @@ button#start {
     background-color: #555;
     color: white;
     font-size: 16px;
-    padding: 12px 24px;
+    padding: 12px 12px;
     border: none;
     cursor: pointer;
     border-radius: 5px;
+    text-align: center;
+}
+
+header.container {
     text-align: center;
 }
