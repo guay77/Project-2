@@ -1,50 +1,105 @@
-var db = require("../models");
+=== === === === === === === === === === === === === === === === === === === === =
+var Book = require("../models");
 
-
-
-
-
+// Routes
+// =============================================================
 module.exports = function(app) {
-    // Get all examples
-    app.get("/api/examples", function(req, res) {
-        db.Example.findAll({
+    // Get all items
+    app.get("/api/all", function(req, res) {
+        Book.findAll({}).then(function(results) {
+            res.json(results);
+        });
+    });
+
+    // Get a specific book
+    app.get("/api/:clothesItem", function(req, res) {
+        Book.findAll({
             where: {
-                availability: true
+                title: req.params.type
             }
-        }).then(function(dbExamples) {
-            res.json(dbExamples);
+        }).then(function(results) {
+            res.json(results);
         });
     });
 
-    // Create a new example
-    app.post("/api/examples", function(req, res) {
-        db.Example.create(req.body).then(function(dbExample) {
-            res.json(dbExample);
-        });
-    });
-
-    // Delete an example by id
-    app.delete("/api/examples/:id", function(req, res) {
-        db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-            res.json(dbExample);
-        });
-    });
-
-
-
-    app.put("/api/examples", function(req, res) {
-        db.examples.update({
-            text: req.body.text,
-            complete: req.body.complete
-        }, {
+    // Get all books of a specific genre
+    app.get("/api/genre/:size", function(req, res) {
+        Book.findAll({
             where: {
-                id: req.body.id
+                genre: req.params.size
+            }
+        }).then(function(results) {
+            res.json(results);
+        });
+    });
+
+    // Get all books from a specific author
+    app.get("/api/author/:author", function(req, res) {
+        Book.findAll({
+            where: {
+                author: req.params.author
+            }
+        }).then(function(results) {
+            res.json(results);
+        });
+    });
+
+    // Get all "long" books (books 150 pages or more)
+    app.get("/api/books/long", function(req, res) {
+        Book.findAll({
+            where: {
+                pages: {
+                    $gte: 150
+                }
+            },
+            order: [
+                ["pages", "DESC"]
+            ]
+        }).then(function(results) {
+            res.json(results);
+        });
+    });
+
+    // Get all "short" books (books 150 pages or less)
+    app.get("/api/books/short", function(req, res) {
+        Book.findAll({
+            where: {
+                pages: {
+                    $lte: 150
+                }
+            },
+            order: [
+                ["pages", "ASC"]
+            ]
+        }).then(function(results) {
+            res.json(results);
+        });
+    });
+
+    // Add a book
+    app.post("/api/new", function(req, res) {
+        console.log("Book Data:");
+        console.log(req.body);
+        Book.create({
+            title: req.body.title,
+            author: req.body.author,
+            genre: req.body.genre,
+            pages: req.body.pages
+        }).then(function(results) {
+            res.json(results);
+        });
+    });
+
+    // Delete a book
+    app.delete("/api/book/:id", function(req, res) {
+        console.log("Book ID:");
+        console.log(req.params.id);
+        Book.destroy({
+            where: {
+                id: req.params.id
             }
         }).then(function() {
-            res.json(dbExamples);
+            res.end();
         });
-        // Use the sequelize update method to update a todo to be equal to the value of req.body
-        // req.body will contain the id of the todo we need to update
     });
-
 };

@@ -1,8 +1,8 @@
 {
     "development": {
         "username": "root",
-        "password": null,
-        "database": "exampledb",
+        "password": "julia7733",
+        "database": "clothesSwitch_db",
         "host": "localhost",
         "dialect": "mysql"
     },
