@@ -23,7 +23,10 @@
                 <nav class="navbar fixed-top justify-content-end">
                     <ul class="nav nav-bar">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#top"><strong class="navBorder">Home</strong></a>
+                            <a class="nav-link active" href="#top"><strong class="navBorder" id="homebutton1">HOME</strong></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#top"><strong class="navBorder" id="addbutton1">ADD</strong></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="#blackTieSection"><strong class="navBorder">BLACK TIE</strong></a>
@@ -45,26 +48,26 @@
     <section class="blackTie bg-white" id="blackTieSection">
         <div class="container">
             <h1>
-                <a href="https://cooltext.com"><img src="https://images.cooltext.com/5310052.png" width="227" height="70" alt="Black Tie j " /></a>
+                <img src="./static/photos/blacktielogo.png" width="227" height="70" alt="Black Tie j " /></a>
             </h1>
             <div class="thumbnailWrapper">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="imgContainer">
                             <h1></h1>
-                            <img class="blacktie1" src="../assets/photos/blacktie1.jpg" alt="img" height="100px" width="100px">
+                            <img class="blacktie1" src="./static/photos/blacktie1.jpg" alt="img" height="100px" width="100px">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="imgContainer">
                             <h1></h1>
-                            <img class="blacktie2" src="../assets/photos/blacktie2.jpg" alt="img" height="100px" width="100px">
+                            <img class="blacktie2" src="./static/photos/blacktie2.jpg" alt="img" height="100px" width="100px">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="imgContainer">
                             <h1></h1>
-                            <img class="blacktie3" src="../assets/photos/blacktie3.jpg" alt="img" height="100px" width="100px">
+                            <img class="blacktie3" src="./static/photos/blacktie3.jpg" alt="img" height="100px" width="100px">
                         </div>
                     </div>
                 </div>
@@ -84,27 +87,27 @@
     <section class="sport bg-white" id="sportSection">
         <div class="container">
             <h1>
-                <a href="https://cooltext.com"><img src="https://images.cooltext.com/5310055.png" width="227" height="70" alt="SPORT j " /></a>
+                <img src="./static/photos/sportlogo.png" width="227" height="70" alt="SPORT j " /></a>
             </h1>
             <div class="thumbnailWrapper"></div>
             <div class="row">
                 <div class="col-md-4">
                     <div class="imgContainer">
                         <h1></h1>
-                        <img class="jean2" src="../assets/photos/jean2.jpg" alt="img" height="100px" width="100px">
+                        <img class="jean2" src="./static/photos/jean2.jpg" alt="img" height="100px" width="100px">
 
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="imgContainer">
                         <h1></h1>
-                        <img class="jean1" src="../assets/photos/jean1.jpg" alt="img" height="100px" width="100px">
+                        <img class="jean1" src="./static/photos/jean1.jpg" alt="img" height="100px" width="100px">
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="imgContainer">
                         <h1></h1>
-                        <img class="sweather" src="../assets/photos/sweather.jpg" alt="img" height="100px" width="100px">
+                        <img class="sweather" src="./static/photos/sweather.jpg" alt="img" height="100px" width="100px">
                     </div>
                 </div>
             </div>
@@ -121,27 +124,27 @@
     <section class="casual bg-white" id="casualSection">
         <div class="container">
             <h1>
-                <a href="https://cooltext.com"><img src="https://images.cooltext.com/5310057.png" width="227" height="70" alt="CASUAL j " /></a>
+                <img src="./static/photos/casuallogo.png" width="227" height="70" alt="CASUAL j " /></a>
             </h1>
             <div class="thumbnailWrapper">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="imgContainer">
                             <h1></h1>
-                            <img class="skirt" src="../assets/photos/skirt.jpg" alt="img" height="100px" width="100px">
+                            <img class="skirt" src="./static/photos/skirt.jpg" alt="img" height="100px" width="100px">
                         </div>
 
                     </div>
                     <div class="col-md-4">
                         <div class="imgContainer">
                             <h1></h1>
-                            <img class="shirt" src="../assets/photos/shirt.jpg" alt="img" height="100px" width="100px">
+                            <img class="shirt" src="./static/photos/shirt.jpg" alt="img" height="100px" width="100px">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="imgContainer">
                             <h1></h1>
-                            <img class="casual" src="../assets/photos/casual.jpg" alt="img" height="100px" width="100px">
+                            <img class="casual" src="./static/photos/casual.jpg" alt="img" height="100px" width="100px">
                         </div>
                     </div>
                 </div>
@@ -164,3 +167,13 @@
 </body>
 
 </html>
+<script>
+    $("#addbutton1").click(function() {
+        var go_to_url = "add";
+        document.location.href = go_to_url;
+    });
+    $("#homebutton1").click(function() {
+        var go_to_url = "/";
+        document.location.href = go_to_url;
+    });
+</script>

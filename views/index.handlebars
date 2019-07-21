@@ -6,7 +6,7 @@
     <p>
       {{this.id}}. {{this.post}}
 
-      <button data-postid="{{this.id}}" class="delpost">Delete Plan!</button>
+      <button data-postid="{{this.id}}" class="delpost">Delete Post!</button>
     </p>
   </li>
   {{/each}}
@@ -38,22 +38,16 @@
       <option>Black Tie</option>
     </select>
   </div>
-  <div class="form-group">
-    <label for="exampleFormControlSelect1">Size</label>
-    <select class="AllSizes" id="Size">
-      <option>XS</option>
-      <option>S</option>
-      <option>M</option>
-      <option>L</option>
-      <option>XL</option>
-      <option>XXL</option>
-    </select>
-  </div>
+ 
 
   
   <div class="form-group">
     <label for="exampleFormControlTextarea1">Enter Your Item Description</label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+  <div class="form-group" id="addImage">
+    <label for="exampleFormControlFile1">Example file input</label>
+    <input type="file" class="form-control-file" id="exampleFormControlFile1">
   </div>
 <button type="submit">Create Post!</button>
 </form>
@@ -88,28 +82,22 @@
       <option>Black Tie</option>
     </select>
   </div>
-  <div class="form-group">
-    <label for="exampleFormControlSelect1">Size</label>
-    <select class="AllSizes" id="Size">
-      <option>XS</option>
-      <option>S</option>
-      <option>M</option>
-      <option>L</option>
-      <option>XL</option>
-      <option>XXL</option>
-    </select>
-  </div>
+ 
 
   
   <div class="form-group">
     <label for="exampleFormControlTextarea1">Enter Your Item Description</label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
   </div>
-  
-  <button type="submit">Update Plan!</button>
+  <div class="form-group" id="updateImage">
+    <label for="exampleFormControlFile1">Example file input</label>
+    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+  </div>
+  <button type="submit">Update Post!</button>
 </form>
 </div>
 <div class="col-8">
+  
 
 </div>
 </div>
@@ -134,46 +122,46 @@
   });
 
   $("#createpost").on("submit", function(event) {
-    // Make sure to preventDefault on a submit event.
+    
     event.preventDefault();
 
-    // [name=plan] will find an element with a "name" attribute equal to the string "plan"
-    var newPlan = {
+    
+    var newPost = {
       plan: $("#createpost[name=post]").val().trim()
     };
 
-    // Send the POST request.
+    
     $.ajax("/api/posts", {
       type: "POST",
-      data: newPlan
+      data: newpost
     }).then(
       function() {
         console.log("created new plan");
-        // Reload the page to get the updated list
+        
         location.reload();
       }
     );
   });
 
   $("#update").on("submit", function(event) {
-    // Make sure to preventDefault on a submit event.
+    
     event.preventDefault();
 
-    // Get the ID by finding an element with a "name" attribute equal to the string "id"
+   
     var id = $("[name=id]").val().trim();
 
-    var updatedPlan = {
+    var updatedPost = {
       plan: $("#updatepost [name=post]").val().trim()
     };
 
-    // Send the PUT request.
+    
     $.ajax("/api/posts/" + id, {
       type: "PUT",
       data: updatedPost
     }).then(
       function() {
         console.log("updated id ", id);
-        // Reload the page to get the updated list
+        
         location.reload();
       }
     );
