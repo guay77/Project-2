@@ -1,0 +1,4 @@
+
+DROP DATABASE IF EXISTS waedrobe;
+
+CREATE DATABASE wardrobe;
