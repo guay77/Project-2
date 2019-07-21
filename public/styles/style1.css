@@ -107,20 +107,20 @@
     section#blackTieSection {
         padding-top: 1px;
         padding-bottom: 0;
-        background-image: url('../../assets/photos/rentpagebackground.jpg');
+        background-image: url('../static/photos/rentpagebackground.jpg');
         background-repeat: round;
     }
     
     section#casualSection {
         padding-top: 0;
         padding-bottom: 1px;
-        background-image: url('../../assets/photos/rentpagebackground.jpg');
+        background-image: url('../static/photos/rentpagebackground.jpg');
         background-repeat: round;
     }
     
     section#sportSection {
         padding-top: 0;
         padding-bottom: 1px;
-        background-image: url('../../assets/photos/rentpagebackground.jpg');
+        background-image: url('../static/photos/rentpagebackground.jpg');
         background-repeat: round;
     }
