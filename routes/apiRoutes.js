@@ -1,100 +1,86 @@
-=== === === === === === === === === === === === === === === === === === === === =
-var Book = require("../models");
+var ClothesItem = require("../models");
+
+var Loan = require(".../models");
+var User = require(".../models");
 
 // Routes
 // =============================================================
 module.exports = function(app) {
     // Get all items
-    app.get("/api/all", function(req, res) {
-        Book.findAll({}).then(function(results) {
+    app.get("/api/clothesItem", function(req, res) {
+        db.ClothesItem.findAll({}).then(function(results) {
             res.json(results);
         });
     });
 
-    // Get a specific book
-    app.get("/api/:clothesItem", function(req, res) {
-        Book.findAll({
+    // Get an item by id
+    app.get("/api/clothesItem/:id", function(req, res) {
+        db.ClothesItem.findAll({
             where: {
-                title: req.params.type
+                id: req.params.id
             }
         }).then(function(results) {
             res.json(results);
         });
     });
 
-    // Get all books of a specific genre
-    app.get("/api/genre/:size", function(req, res) {
-        Book.findAll({
+    // Get an item by size.
+    app.get("/api/clothesItem/:size", function(req, res) {
+        db.ClothesItem.findAll({
             where: {
-                genre: req.params.size
+                size: req.params.size
             }
         }).then(function(results) {
             res.json(results);
         });
     });
 
-    // Get all books from a specific author
-    app.get("/api/author/:author", function(req, res) {
-        Book.findAll({
+    // Get all items by 
+    app.get("/api/clothesItem/:itemType", function(req, res) {
+        db.ClothesItem.findAll({
             where: {
-                author: req.params.author
+                itemType: req.params.itemType
             }
         }).then(function(results) {
             res.json(results);
         });
     });
 
-    // Get all "long" books (books 150 pages or more)
-    app.get("/api/books/long", function(req, res) {
-        Book.findAll({
+
+    app.get("/api/clothesItem/:availability", function(req, res) {
+        db.ClothesItem.findAll({
             where: {
-                pages: {
-                    $gte: 150
-                }
+                availability: req.params.availability ===
             },
             order: [
-                ["pages", "DESC"]
+                ["DESC"]
             ]
         }).then(function(results) {
             res.json(results);
         });
     });
 
-    // Get all "short" books (books 150 pages or less)
-    app.get("/api/books/short", function(req, res) {
-        Book.findAll({
-            where: {
-                pages: {
-                    $lte: 150
-                }
-            },
-            order: [
-                ["pages", "ASC"]
-            ]
-        }).then(function(results) {
-            res.json(results);
-        });
-    });
+
 
     // Add a book
-    app.post("/api/new", function(req, res) {
-        console.log("Book Data:");
+    app.post("/api/clothesItem/new", function(req, res) {
+        console.log("Clothes Data:");
         console.log(req.body);
-        Book.create({
-            title: req.body.title,
-            author: req.body.author,
-            genre: req.body.genre,
-            pages: req.body.pages
+        db.ClothesItem.create({
+            description: req.body.description,
+            itemType: req.body.itemType,
+            size: req.body.size,
+            availability: req.body.availability
         }).then(function(results) {
             res.json(results);
         });
     });
 
     // Delete a book
-    app.delete("/api/book/:id", function(req, res) {
-        console.log("Book ID:");
+    app.delete("/api/clothesItem/:id", function(req, res) {
+        console.log("Clothes Item ID:");
         console.log(req.params.id);
-        Book.destroy({
+        db.ClothesItem.destroy({
             where: {
                 id: req.params.id
             }
@@ -103,3 +89,217 @@ module.exports = function(app) {
         });
     });
 };
+
+
+
+app.get("/api/Loan", function(req, res) {
+    db.Loan.findAll({}).then(function(results) {
+        res.json(results);
+    });
+});
+
+// Get an item by id
+app.get("/api/Loan/:id", function(req, res) {
+    db.Loan.findAll({
+        where: {
+            id: req.params.id
+        }
+    }).then(function(results) {
+        res.json(results);
+    });
+});
+
+// Get an item by size.
+app.get("/api/Loan/:size", function(req, res) {
+    db.Loan.findAll({
+        where: {
+            size: req.params.size
+        }
+    }).then(function(results) {
+        res.json(results);
+    });
+});
+
+// Get all items by 
+app.get("/api/Loan/:itemType", function(req, res) {
+    db.Loan.findAll({
+        where: {
+            itemType: req.params.itemType
+        }
+    }).then(function(results) {
+        res.json(results);
+    });
+});
+
+
+app.get("/api/Loan/:availability", function(req, res) {
+    db.Loan.findAll({
+        where: {
+            itemType: req.params.availability
+        }
+    }).then(function(results) {
+        res.json(results);
+    });
+});
+
+
+
+app.get("/api/Loan/:email", function(req, res) {
+    db.Loan.findAll({
+        where: {
+            itemType: req.params.email
+        }
+    }).then(function(results) {
+        res.json(results);
+    });
+});
+
+
+app.get("/api/Loan/:address", function(req, res) {
+    db.Loan.findAll({
+        where: {
+            itemType: req.params.address
+        }
+    }).then(function(results) {
+        res.json(results);
+    });
+});
+
+app.post("/api/Loan/new", function(req, res) {
+    console.log("Loan Data:");
+    console.log(req.body);
+    db.ClothesItem.create({
+        description: req.body.description,
+        itemType: req.body.itemType,
+        size: req.body.size,
+        availability: req.body.availability,
+        email: req.body.email,
+        address: req.body.address
+
+    }).then(function(results) {
+        res.json(results);
+    });
+});
+
+// Delete a book
+app.delete("/api/Loan/:id", function(req, res) {
+    console.log("Clothes Item ID:");
+    console.log(req.params.id);
+    db.Loan.destroy({
+        where: {
+            id: req.params.id
+        }
+    }).then(function() {
+        res.end();
+    });
+});
+
+
+app.get("/api/User/:id", function(req, res) {
+    db.User.findAll({
+        where: {
+            id: req.params.id
+        }
+    }).then(function(results) {
+        res.json(results);
+    });
+});
+
+// Get an item by size.
+app.get("/api/User/:email", function(req, res) {
+    db.User.findAll({
+        where: {
+            size: req.params.email
+        }
+    }).then(function(results) {
+        res.json(results);
+    });
+});
+
+// Get all items by 
+app.get("/api/User/:address", function(req, res) {
+    db.User.findAll({
+        where: {
+            itemType: req.params.address
+        }
+    }).then(function(results) {
+        res.json(results);
+    });
+});
+
+
+app.get("/api/User/:zipcode", function(req, res) {
+    db.User.findAll({
+        where: {
+            itemType: req.params.zipcode
+        }
+    }).then(function(results) {
+        res.json(results);
+    });
+});
+
+
+
+app.get("/api/User/:city", function(req, res) {
+    db.User.findAll({
+        where: {
+            itemType: req.params.city
+        }
+    }).then(function(results) {
+        res.json(results);
+    });
+});
+
+
+app.get("/api/User/:name", function(req, res) {
+    db.User.findAll({
+        where: {
+            itemType: req.params.name
+        }
+    }).then(function(results) {
+        res.json(results);
+    });
+});
+
+app.get("/api/User/:lastname", function(req, res) {
+    db.User.findAll({
+        where: {
+            itemType: req.params.lastname
+        }
+    }).then(function(results) {
+        res.json(results);
+    });
+});
+
+
+
+
+app.post("/api/User/new", function(req, res) {
+    console.log("User Data:");
+    console.log(req.body);
+    db.User.create({
+        id: req.body.id,
+        email: req.body.email,
+        address: req.body.address,
+        availability: req.body.zipcode,
+        city: req.body.city,
+        name: req.body.name,
+        lastname: req.body.lastname
+
+    }).then(function(results) {
+        res.json(results);
+    });
+});
+
+// Delete a book
+app.delete("/api/User/:id", function(req, res) {
+    console.log("User by ID:");
+    console.log(req.params.id);
+    db.User.destroy({
+        where: {
+            id: req.params.id
+        }
+    }).then(function() {
+        res.end();
+    });
+});
